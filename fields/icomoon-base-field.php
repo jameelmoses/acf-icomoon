@@ -71,8 +71,8 @@ class acf_field_icomoon_base extends acf_field {
 			$out[] = array( 'id' => $cs, 'text' => $cs );
 		}
 
-		// Cache 24 hours
-		wp_cache_set( $cache_key, $out, '', HOUR_IN_SECONDS * 24 );
+		// Cache 30 seconds
+		wp_cache_set( $cache_key, $out, '', 30 );
 
 		return $out;
 	}

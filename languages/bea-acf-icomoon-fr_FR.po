@@ -51,7 +51,7 @@ msgid "Add icomoon selector"
 msgstr "Ajoute un champ \"Sélecteur d’icône\""
 
 #. Author of the plugin/theme
-msgid "BE API Technical team"
+msgid "Jameel Moses"
 msgstr ""
 
 #~ msgid "Basic"

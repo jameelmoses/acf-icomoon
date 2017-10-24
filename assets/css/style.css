@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-[class^='icon-']::before,
-[class*=' icon-']::before {
+[class^='icon-'],
+[class*=' icon-'] {
   font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;

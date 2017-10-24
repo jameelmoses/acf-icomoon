@@ -15,7 +15,7 @@
 		'4': {
 			data: acf_icomoon,
 			templateResult: function (css) {
-				return $("<span style='display: inline-block; font-size:18px; margin-right: 5px;' class='icon-" + css.id + "'></span><span>" + css.text + "</span>");
+				return $("<span style='display: inline-block; font-size:18px; margin-right: 5px; position: relativel; top: 2px;' class='icon-" + css.id + "'></span><span>" + css.text + "</span>");
 			},
 			templateSelection: function (css) {
 				return $("<span class='icon-" + css.id + "'></span><span>" + css.text + "</span>");
