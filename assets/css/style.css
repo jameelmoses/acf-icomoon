@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+[class^='icon-']::before,
+[class*=' icon-']::before {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  display: inline-block;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook::before {
+  content: '\f09a';
+}
+
+.icon-twitter::before {
+  content: '\f099';
+}
+
+.icon-instagram::before {
+  content: '\f16d';
+}
+
+.icon-google-plus::before {
+  content: '\f0d5';
+}
+
+.icon-linkedin::before {
+  content: '\f0e1';
+}
+
+.icon-youtube::before {
+  content: '\f167';
+}
+
+.icon-snapchat::before {
+  content: '\f2ac';
+}
+
+.icon-youtube-play::before {
+  content: '\f16a';
+}
+
+.icon-pinterest::before {
+  content: '\f231';
+}
+
+/*# sourceMappingURL=sourcemaps/icons.css.map */

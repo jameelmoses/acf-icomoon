@@ -1,0 +1,13 @@
+{
+  "name": "jameelmoses/acf-icomoon",
+  "description": "ACF IcoMoon select field",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "jameelmoses",
+      "email": "hello@jameelmoses.com"
+    }
+  ],
+  "type": "wordpress-plugin"
+}
