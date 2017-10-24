@@ -57,10 +57,10 @@ add_filter( 'icomoon_fileurl', 'override_acf_icomoon_fileurl' );
  */
 function override_acf_icomoon_fonts() {
 	return array(
-    'woff2' => get_stylesheet_directory_uri() . 'assets/fonts/icomoon.woff?ousyjt',
-    'ttf'  => get_stylesheet_directory_uri() . 'assets/fonts/icomoon.ttf?ousyjt',
-    'woff' => get_stylesheet_directory_uri() . 'assets/fonts/icomoon.woff?ousyjt',
-    'svg'  => get_stylesheet_directory_uri() . 'assets/fonts/icomoon.svg?ousyjt#icomoon'
+    'woff2' => get_stylesheet_directory_uri() . '/assets/fonts/icomoon.woff?ousyjt',
+    'ttf'  => get_stylesheet_directory_uri() . '/assets/fonts/icomoon.ttf?ousyjt',
+    'woff' => get_stylesheet_directory_uri() . '/assets/fonts/icomoon.woff?ousyjt',
+    'svg'  => get_stylesheet_directory_uri() . '/assets/fonts/icomoon.svg?ousyjt#icomoon'
 	);
 }
 add_filter( 'icomoon_fonts', 'override_acf_icomoon_fonts' );
