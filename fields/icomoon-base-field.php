@@ -141,7 +141,6 @@ class acf_field_icomoon_base extends acf_field {
 		global $wp_scripts;
 
 		// vars
-		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		$major = acf_get_setting('select2_version');
 
 		// attempt to find 3rd party Select2 version
@@ -153,16 +152,16 @@ class acf_field_icomoon_base extends acf_field {
 		// v4
 		if( $major == 4 ) {
 			$version = '4.0';
-			$script = acf_get_dir("assets/inc/select2/4/select2.full{$min}.js");
-			$style = acf_get_dir("assets/inc/select2/4/select2{$min}.css");
+			$script = acf_get_dir("assets/inc/select2/4/select2.full.js");
+			$style = acf_get_dir("assets/inc/select2/4/select2.css");
 
 		} else { // v3
 			$version = '3.5.2';
 			if ( version_compare( acf_get_setting( 'version' ), '5.5.0', '>=' ) ) {
-				$script = acf_get_dir("assets/inc/select2/3/select2{$min}.js");
+				$script = acf_get_dir("assets/inc/select2/3/select2.js");
 				$style = acf_get_dir("assets/inc/select2/3/select2.css");
 			} else {
-				$script = acf_get_dir("assets/inc/select2/select2{$min}.js");
+				$script = acf_get_dir("assets/inc/select2/select2.js");
 				$style = acf_get_dir('assets/inc/select2/select2.css');
 			}
 		}
@@ -173,7 +172,7 @@ class acf_field_icomoon_base extends acf_field {
 
 		wp_register_script(
 			'acf-input-icomoon',
-			ACF_ICOMOON_URL . 'assets/js/input' . $min . '.js',
+			ACF_ICOMOON_URL . 'assets/js/input.js',
 			array( 'select2' ),
 			ACF_ICOMOON_VER
 		);
@@ -181,7 +180,7 @@ class acf_field_icomoon_base extends acf_field {
 		// Localizing the script
 		wp_localize_script( 'acf-input-icomoon', 'acf_icomoon', $this->parse_css() );
 
-		$css_file = ACF_ICOMOON_URL . 'assets/css/style' . $min . '.css';
+		$css_file = ACF_ICOMOON_URL . 'assets/css/style.css';
 		/**
 		 * The icomoon stylesheet's URL.
 		 *
