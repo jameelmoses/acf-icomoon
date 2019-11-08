@@ -149,20 +149,28 @@ class acf_field_icomoon_base extends acf_field {
 			$major = (int) $wp_scripts->registered['select2']->ver;
 		}
 
+		// ACF has changed the name of its function to get the URL of a plugin file
+		// as of 5.6.8. To remain compatible with ACF <5.6.8, but avoid deprecation
+		// notices on >=5.6.8, use the new acf_get_url function if available.
+		$acf_url_function_name = 'acf_get_dir';
+		if( function_exists('acf_get_url') ) {
+			$acf_url_function_name = 'acf_get_url';
+		}
+
 		// v4
 		if( $major == 4 ) {
 			$version = '4.0';
-			$script = acf_get_dir("assets/inc/select2/4/select2.full.js");
-			$style = acf_get_dir("assets/inc/select2/4/select2.css");
+			$script = call_user_func($acf_url_function_name, "assets/inc/select2/4/select2.full.js");
+			$style = call_user_func($acf_url_function_name, "assets/inc/select2/4/select2.css");
 
 		} else { // v3
 			$version = '3.5.2';
 			if ( version_compare( acf_get_setting( 'version' ), '5.5.0', '>=' ) ) {
-				$script = acf_get_dir("assets/inc/select2/3/select2.js");
-				$style = acf_get_dir("assets/inc/select2/3/select2.css");
+				$script = call_user_func($acf_url_function_name, "assets/inc/select2/3/select2.js");
+				$style = call_user_func($acf_url_function_name, "assets/inc/select2/3/select2.css");
 			} else {
-				$script = acf_get_dir("assets/inc/select2/select2.js");
-				$style = acf_get_dir('assets/inc/select2/select2.css');
+				$script = call_user_func($acf_url_function_name, "assets/inc/select2/select2.js");
+				$style = call_user_func($acf_url_function_name, 'assets/inc/select2/select2.css');
 			}
 		}
 
