@@ -152,17 +152,17 @@ class acf_field_icomoon_base extends acf_field {
 		// v4
 		if( $major == 4 ) {
 			$version = '4.0';
-			$script = acf_get_dir("assets/inc/select2/4/select2.full.js");
-			$style = acf_get_dir("assets/inc/select2/4/select2.css");
+			$script = acf_get_url("assets/inc/select2/4/select2.full.js");
+			$style = acf_get_url("assets/inc/select2/4/select2.css");
 
 		} else { // v3
 			$version = '3.5.2';
 			if ( version_compare( acf_get_setting( 'version' ), '5.5.0', '>=' ) ) {
-				$script = acf_get_dir("assets/inc/select2/3/select2.js");
-				$style = acf_get_dir("assets/inc/select2/3/select2.css");
+				$script = acf_get_url("assets/inc/select2/3/select2.js");
+				$style = acf_get_url("assets/inc/select2/3/select2.css");
 			} else {
-				$script = acf_get_dir("assets/inc/select2/select2.js");
-				$style = acf_get_dir('assets/inc/select2/select2.css');
+				$script = acf_get_url("assets/inc/select2/select2.js");
+				$style = acf_get_url('assets/inc/select2/select2.css');
 			}
 		}
 

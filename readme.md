@@ -73,8 +73,3 @@ function override_acf_icomoon_font_family() {
 }
 add_filter( 'icomoon_font_family_name', 'override_acf_icomoon_font_family' );
 ```
-
-## Changelog ##
-
-### 1.0.0 (October 24, 2017)
-* initial commit
