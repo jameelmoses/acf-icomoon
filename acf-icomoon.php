@@ -6,7 +6,6 @@
  Description: ACF IcoMoon select field
  Author: Jameel Moses
  Author URI: http://www.jameelmoses.com
- Domain Path: languages
  Text Domain: acf-icomoon
 
  ----
@@ -47,34 +46,8 @@ class acf_field_icomoon_plugin {
 	 */
 	function __construct() {
 
-		add_action( 'init', array( __CLASS__, 'load_translation' ), 1 );
-
 		// Register ACF fields
-		add_action( 'acf/register_fields', array( __CLASS__, 'register_field_v4' ) );
-		add_action( 'acf/include_field_types', array( __CLASS__, 'register_field_v5' ) );
-	}
-
-	/**
-	 * Load plugin translation.
-	 *
-	 * @since 1.0.0
-	 */
-	public static function load_translation() {
-		load_plugin_textdomain(
-			'acf-icomoon',
-			false,
-			dirname( plugin_basename( __FILE__ ) ) . '/languages'
-		);
-	}
-
-	/**
-	 * Register Icomoon field for ACF v4.
-	 *
-	 * @since 1.0.0
-	 */
-	public static function register_field_v4() {
-		include_once( ACF_ICOMOON_DIR . 'fields/icomoon-base-field.php' );
-		include_once( ACF_ICOMOON_DIR . 'fields/icomoon-v4.php' );
+		add_action( 'acf/include_field_types', array( __CLASS__, 'register_field' ) );
 	}
 
 	/**
@@ -82,7 +55,7 @@ class acf_field_icomoon_plugin {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function register_field_v5() {
+	public static function register_field() {
 
 		$enqueue_select2 = acf_get_setting( 'enqueue_select2' );
 		if ( is_null( $enqueue_select2 ) ) {

@@ -6,19 +6,19 @@
 				results: acf_icomoon
 			},
 			formatResult: function (css) {
-				return "<span style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;' class='icon-" + css.id + "'></span> " + css.text;
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 			},
 			formatSelection: function (css) {
-				return "<span style='display: inline-block; font-size:15px; margin-right: 5px; position: relative; top: 2px;' class='icon-" + css.id + "'></span> " + css.text;
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 			}
 		},
 		'4': {
 			data: acf_icomoon,
 			templateResult: function (css) {
-				return $("<span style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;' class='icon-" + css.id + "'></span><span>" + css.text + "</span>");
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 			},
 			templateSelection: function (css) {
-				return $("<span style='display: inline-block; font-size:15px; margin-right: 5px; position: relative; top: 2px;' class='icon-" + css.id + "'></span><span>" + css.text + "</span>");
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 			}
 		}
 	};
@@ -65,7 +65,7 @@
 		var input = $field.find('input.acf-icomoon');
 		var allowClear = $(input).attr('data-allow-clear') || 0;
 		var opts = $.extend({
-			dropdownCssClass: "bigdrop widefat",
+			dropdownCssClass: 'acf-icomoon-dropdown bigdrop widefat',
 			dropdownAutoWidth: true,
 			allowClear: 1 == allowClear
 		}, formatProvider);
