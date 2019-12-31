@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: Advanced Custom Fields: IcoMoon
- Version: 1.0.5
+ Version: 1.0.6
  Plugin URI: http://www.jameelmoses.com
  Description: ACF IcoMoon select field
  Author: Jameel Moses
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-define( 'ACF_ICOMOON_VER', '1.0.5' );
+define( 'ACF_ICOMOON_VER', '1.0.6' );
 define( 'ACF_ICOMOON_URL', plugin_dir_url( __FILE__ ) );
 define( 'ACF_ICOMOON_DIR', plugin_dir_path( __FILE__ ) );
 
