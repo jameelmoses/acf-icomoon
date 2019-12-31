@@ -1,54 +1,14 @@
 (function ($, undefined) {
 
 	var select2_format = {
-		'3': {
-			data: {
-				results: acf_icomoon
-			},
-			formatResult: function (css) {
-				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
-			},
-			formatSelection: function (css) {
-				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
-			}
+		data: acf_icomoon,
+		templateResult: function (css) {
+			return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 		},
-		'4': {
-			data: acf_icomoon,
-			templateResult: function (css) {
-				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
-			},
-			templateSelection: function (css) {
-				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
-			}
+		templateSelection: function (css) {
+			return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
 		}
 	};
-
-	/**
-	 * Get config properties matching current Select2 version.
-	 *
-	 * @param {String} version
-	 * @return {Object}
-	 */
-	function select2FormatProvider(version) {
-		if(undefined !== version && undefined !== select2_format[version]) {
-			return select2_format[version];
-		}
-
-		return select2_format['4'];
-	}
-
-	/**
-	 * Detect which version of Select2 is loaded.
-	 *
-	 * @return {String|Boolean}
-	 */
-	function detectSelect2Version() {
-		if(undefined === $.fn.select2) {
-			return false;
-		}
-
-		return ('formatResult' in $.fn.select2.defaults) ? '3' : '4';
-	}
 
 	/**
 	 * Initialize ACF field.
@@ -57,64 +17,46 @@
 	 */
 	function initialize_field($field) {
 
-		var select2Version = detectSelect2Version();
-		if(!select2Version) {
-			return;
-		}
-		var formatProvider = select2FormatProvider( select2Version );
+		var formatProvider = {
+			data: acf_icomoon,
+			templateResult: function (css) {
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
+			},
+			templateSelection: function (css) {
+				return $("<span class='acf-icomoon-dropdown-icon icon-" + css.id + "' style='display: inline-block; font-size:18px; margin-right: 5px; position: relative; top: 2px;'></span><span class='acf-icomoon-dropdown-text'>" + css.text + "</span>");
+			}
+		};
 		var input = $field.find('input.acf-icomoon');
 		var allowClear = $(input).attr('data-allow-clear') || 0;
 		var opts = $.extend({
-			dropdownCssClass: 'acf-icomoon-dropdown bigdrop widefat',
-			dropdownAutoWidth: true,
+			dropdownCssClass: 'acf-icomoon-dropdown',
+			dropdownAutoWidth: false,
+			width: '100%',
 			allowClear: 1 == allowClear
 		}, formatProvider);
 
 		input.select2(opts);
 	}
 
-	if (typeof acf.add_action !== 'undefined') {
+	/*
+	 *  ready append
+	 *
+	 *  These are 2 events which are fired during the page load
+	 *  ready = on page load similar to jQuery(document).ready()
+	 *  append = on new DOM elements appended via repeater field
+	 *
+	 *  @type	event
+	 *  @date	20/07/13
+	 *
+	 *  @param	$el (jQuery selection) the jQuery element which contains the ACF fields
+	 *  @return	n/a
+	 */
 
-		/*
-		 *  ready append (ACF5)
-		 *
-		 *  These are 2 events which are fired during the page load
-		 *  ready = on page load similar to jQuery(document).ready()
-		 *  append = on new DOM elements appended via repeater field
-		 *
-		 *  @type	event
-		 *  @date	20/07/13
-		 *
-		 *  @param	jQueryel (jQuery selection) the jQuery element which contains the ACF fields
-		 *  @return	n/a
-		 */
+	acf.add_action('ready append', function ($el) {
+		// search $el for fields of type 'FIELD_NAME'
+		acf.get_fields({type: 'icomoon'}, $el).each(function () {
+			initialize_field($(this));
+		});
+	});
 
-		acf.add_action('ready append', function (jQueryel) {
-			// search jQueryel for fields of type 'FIELD_NAME'
-			acf.get_fields({type: 'icomoon'}, jQueryel).each(function () {
-				initialize_field($(this));
-			});
-		});
-	} else {
-		/*
-		 *  acf/setup_fields (ACF4)
-		 *
-		 *  This event is triggered when ACF adds any new elements to the DOM.
-		 *
-		 *  @type	function
-		 *  @since	1.0.0
-		 *  @date	01/01/12
-		 *
-		 *  @param	event		e: an event object. This can be ignored
-		 *  @param	Element		postbox: An element which contains the new HTML
-		 *
-		 *  @return	n/a
-		 */
-		$(document).on('acf/setup_fields', function (e, postbox) {
-			$(postbox).find('.field[data-field_type="icomoon"]').each(function () {
-				console.log($(this));
-				initialize_field($(this));
-			});
-		});
-	}
 })(jQuery);
