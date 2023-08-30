@@ -60,12 +60,13 @@ class acf_field_icomoon_base extends acf_field {
 			return $out;
 		}
 
+		$out = [];
+
 		// If not extract them from the CSS file
 		$contents = file_get_contents( $filepath );
 
 		preg_match_all( '#.icon-(.*)::before#', $contents, $css );
 		array_shift( $css );
-
 
 		foreach ( $css[0] as $cs ) {
 			$out[] = array( 'id' => $cs, 'text' => $cs );
